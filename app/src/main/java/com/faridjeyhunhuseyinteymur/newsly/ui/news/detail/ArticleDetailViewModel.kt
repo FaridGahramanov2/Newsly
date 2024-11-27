@@ -1,4 +1,12 @@
 package com.faridjeyhunhuseyinteymur.newsly.ui.news.detail
 
-class ArticleDetailViewModel {
+import com.faridjeyhunhuseyinteymur.newsly.data.model.Article
+
+class ArticleDetailViewModel : ViewModel() {
+    private val _article = MutableLiveData<Article>()
+    val article: LiveData<Article> = _article
+
+    fun setArticle(article: Article) {
+        _article.value = article
+    }
 }
