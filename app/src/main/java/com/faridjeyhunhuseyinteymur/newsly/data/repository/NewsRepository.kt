@@ -1,5 +1,6 @@
 package com.faridjeyhunhuseyinteymur.newsly.data.repository
 
+import com.faridjeyhunhuseyinteymur.newsly.R
 import com.faridjeyhunhuseyinteymur.newsly.data.model.Article
 
 //This class Contains mock data for now.
@@ -11,19 +12,19 @@ class NewsRepository {
             Article(
                 "TotalEnergies pauses business with Adani Group",
                 "French oil major TotalEnergies halted investments into Adani Group, after the Indian ports-to-power conglomerate was engulfed in a crisis over an alleged multi-million-dollar bribery scheme.",
-                R.drawable.placeholder_news,
+                R.drawable.news_placeholder,
                 "Business"
             ),
             Article(
                 "Israel-Lebanon ceasefire deal approved",
                 "Israeli Prime Minister Benjamin Netanyahu approved the emerging ceasefire deal with Hezbollah 'in principle' during a security consultation with Israeli officials Sunday...",
-                R.drawable.placeholder_news,
+                R.drawable.news_placeholder,
                 "Politics"
             ),
             Article(
                 "New AI breakthrough in medical research",
                 "Scientists announce major advancement in AI-powered drug discovery platform...",
-                R.drawable.placeholder_news,
+                R.drawable.news_placeholder,
                 "Technology"
             )
         )

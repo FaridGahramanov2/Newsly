@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/newsListFragment">
+
+    <fragment
+        android:id="@+id/newsListFragment"
+        android:name="com.faridjeyhunhuseyinteymur.newsly.ui.news.list.NewsListFragment"
+        android:label="News">
+        <action
+            android:id="@+id/action_newsList_to_detail"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.faridjeyhunhuseyinteymur.newsly.ui.news.detail.ArticleDetailFragment"
+        android:label="Article Details">
+        <argument
+            android:name="article"
+            app:argType="com.faridjeyhunhuseyinteymur.newsly.data.model.Article" />
+    </fragment>
+
+</navigation>
