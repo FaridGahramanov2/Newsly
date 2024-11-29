@@ -1,34 +1,44 @@
 package com.faridjeyhunhuseyinteymur.newsly.ui.news.list
 
-class NewsAdapter : RecyclerView.Adapter<NewsViewHolder>() {
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.faridjeyhunhuseyinteymur.newsly.data.model.Article
+
+class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     private var articles = listOf<Article>()
-    private var onItemClickListener: ((Article) -> Unit)? = null
+    var onItemClick: ((Article) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Article) -> Unit) {
-        onItemClickListener = listener
-    }
+    inner class NewsViewHolder(private val binding: ItemNewsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-    fun submitList(newArticles: List<Article>) {
-        articles = newArticles
-        notifyDataSetChanged()
+        fun bind(article: Article) {
+            binding.apply {
+                title.text = article.title
+                descriptionTextView.text = article.description
+                categoryTextView.text = article.category
+                newsImageView.setImageResource(article.imageResourceId)
+                root.setOnClickListener {
+                    onItemClick?.invoke(article)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = ItemNewsBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+            LayoutInflater.from(parent.context), parent, false
         )
         return NewsViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        val article = articles[position]
-        holder.bind(article)
-        holder.itemView.setOnClickListener {
-            onItemClickListener?.invoke(article)
-        }
+        holder.bind(articles[position])
     }
 
     override fun getItemCount() = articles.size
+
+    fun submitList(newArticles: List<Article>) {
+        articles = newArticles
+        notifyDataSetChanged()
+    }
 }
