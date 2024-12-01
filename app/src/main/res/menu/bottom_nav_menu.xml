@@ -9,4 +9,9 @@
         android:id="@+id/categoriesFragment"
         android:icon="@drawable/ic_category"
         android:title="Categories" />
+
+    <item
+        android:id="@+id/broadcastingFragment"
+        android:icon="@drawable/ic_broadcast"
+        android:title="Broadcast" />
 </menu>

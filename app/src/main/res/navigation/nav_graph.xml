@@ -31,4 +31,12 @@
             app:destination="@id/newsListFragment" />
     </fragment>
 
+
+
+    <fragment
+        android:id="@+id/broadcastingFragment"
+        android:name="com.faridjeyhunhuseyinteymur.newsly.ui.broadcast.BroadcastingFragment"
+        android:label="Broadcast" />
+
+
 </navigation>
