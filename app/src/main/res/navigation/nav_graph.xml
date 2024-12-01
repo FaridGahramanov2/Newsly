@@ -22,6 +22,27 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_newsListFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.faridjeyhunhuseyinteymur.newsly.ui.news.detail.ArticleDetailFragment"
+        android:label="Article Detail">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <argument
+            android:name="imageId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

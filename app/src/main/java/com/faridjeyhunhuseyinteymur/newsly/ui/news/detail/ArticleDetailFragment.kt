@@ -26,47 +26,32 @@ class ArticleDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Use arguments bundle for Part 1
-        arguments?.getString("title")?.let { title ->
-            arguments?.getString("description")?.let { description ->
-                arguments?.getString("category")?.let { category ->
-                    arguments?.getInt("imageId")?.let { imageId ->
-                        val article = Article(
-                            title = title,
-                            description = description,
-                            category = category,
-                            imageId = imageId
-                        )
-                        viewModel.setArticle(article)
-                    }
+        try {
+            arguments?.let { args ->
+                val article = Article(
+                    title = args.getString("title", ""),
+                    description = args.getString("description", ""),
+                    category = args.getString("category", ""),
+                    imageId = args.getInt("imageId", 0)
+                )
+                viewModel.setArticle(article)
+            }
+
+            viewModel.article.observe(viewLifecycleOwner) { article ->
+                binding.apply {
+                    titleTextView.text = article.title
+                    descriptionTextView.text = article.description
+                    categoryChip.text = article.category
+                    newsImageView.setImageResource(article.imageId)
                 }
             }
-        }
-
-        // Observe article details
-        viewModel.article.observe(viewLifecycleOwner) { article ->
-            binding.apply {
-                titleTextView.text = article.title
-                descriptionTextView.text = article.description
-                categoryChip.text = article.category
-                newsImageView.setImageResource(article.imageId)
-            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        fun newInstance(article: Article) = ArticleDetailFragment().apply {
-            arguments = Bundle().apply {
-                putString("title", article.title)
-                putString("description", article.description)
-                putString("category", article.category)
-                putInt("imageId", article.imageId)
-            }
-        }
     }
 }
