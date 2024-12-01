@@ -1,8 +1,10 @@
 package com.faridjeyhunhuseyinteymur.newsly.ui.news.list
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.faridjeyhunhuseyinteymur.newsly.data.model.Article
+import com.faridjeyhunhuseyinteymur.newsly.databinding.ItemNewsBinding
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     private var articles = listOf<Article>()
@@ -13,10 +15,10 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
         fun bind(article: Article) {
             binding.apply {
-                title.text = article.title
+                titleTextView.text = article.title
                 descriptionTextView.text = article.description
-                categoryTextView.text = article.category
-                newsImageView.setImageResource(article.imageResourceId)
+                categoryChip.text = article.category
+                newsImageView.setImageResource(article.imageId)
                 root.setOnClickListener {
                     onItemClick?.invoke(article)
                 }

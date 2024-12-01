@@ -17,11 +17,10 @@ class NewsListViewModel : ViewModel() {
     }
 
     private fun loadMockNews() {
-        _articles.value = repository.getMockNews()
+        _articles.value = repository.getNews()
     }
 
-
-    // TODO: Will be implemented in Part 2
-    // suspend fun loadNews()
-    // suspend fun loadNewsByCategory(category: String)
+    fun loadNewsByCategory(category: String) {
+        _articles.value = repository.getNews(category)
+    }
 }

@@ -1,22 +1,14 @@
 package com.faridjeyhunhuseyinteymur.newsly.ui.categories
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
 class CategoriesViewModel : ViewModel() {
-    private val _categories = MutableLiveData<List<String>>()
-    val categories: LiveData<List<String>> = _categories
+    private val _category = MutableLiveData<String>()
+    val category: LiveData<String> = _category
 
-    init {
-        loadCategories()
-    }
-
-    private fun loadCategories() {
-        _categories.value = listOf(
-            "Business",
-            "Entertainment",
-            "General",
-            "Health",
-            "Science",
-            "Sports",
-            "Technology"
-        )
+    fun setCategory(category: String) {
+        _category.value = category
     }
 }

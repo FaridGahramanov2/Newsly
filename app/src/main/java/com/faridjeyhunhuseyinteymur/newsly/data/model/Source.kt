@@ -1,8 +1,13 @@
 package com.faridjeyhunhuseyinteymur.newsly.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Source(
-    val id: String,
+    val id: String?,
     val name: String
-) {
-    // TODO: Will be used in Part 2 for API integration
-}
+) : Parcelable
+
+
+// TODO : Will be used for PART 2
