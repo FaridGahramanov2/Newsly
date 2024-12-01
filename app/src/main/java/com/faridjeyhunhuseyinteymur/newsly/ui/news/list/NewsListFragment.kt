@@ -32,12 +32,7 @@ class NewsListFragment : Fragment() {
         setupClickListeners()
     }
 
-    private fun setupRecyclerView() {
-        binding.newsRecyclerView.apply {
-            adapter = newsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-    }
+    
 
     private fun setupObservers() {
         viewModel.articles.observe(viewLifecycleOwner) { articles ->
