@@ -1,6 +1,7 @@
 package com.faridjeyhunhuseyinteymur.newsly.data.model
 
-class APIResponse {
-
-    //TODO for part 2
-}
+data class APIResponse(
+    val articles: List<Article>,
+    val status: String,
+    val totalResults: Int
+)

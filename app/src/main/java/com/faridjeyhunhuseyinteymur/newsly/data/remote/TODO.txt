@@ -1,1 +1,0 @@
-this remote package is mean for the API fetch that we will handle until the next submission

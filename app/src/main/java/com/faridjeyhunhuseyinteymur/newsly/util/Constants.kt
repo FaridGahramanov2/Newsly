@@ -1,7 +1,8 @@
 package com.faridjeyhunhuseyinteymur.newsly.util
 
-object Constants {
-    // TODO: Will be added in Part 2
-    // const val BASE_URL = "https://newsapi.org" WE WILL BE USING THIS ENDPOINT
-    // const val API_KEY = "OUR API KEY WILL BE STORED IN HERE"
+class Constants {
+    companion object {
+        const val BASE_URL = "https://newsapi.org/v2/"
+        const val API_KEY = "5cf056a3bb444457a3b1b72803c16b9d" // Replace with your actual API key
+    }
 }

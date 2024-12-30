@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.faridjeyhunhuseyinteymur.newsly.databinding.FragmentArticleDetailBinding
 
 class ArticleDetailFragment : Fragment() {
@@ -36,7 +37,13 @@ class ArticleDetailFragment : Fragment() {
                 titleTextView.text = article.title
                 descriptionTextView.text = article.description
                 categoryChip.text = article.category
-                newsImageView.setImageResource(article.imageId)
+
+                // Use Glide to load image from URL instead of resource
+                article.urlToImage?.let { url ->
+                    Glide.with(this@ArticleDetailFragment)
+                        .load(url)
+                        .into(newsImageView)
+                }
             }
         }
     }

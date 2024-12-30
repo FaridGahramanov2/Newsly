@@ -1,39 +1,28 @@
 package com.faridjeyhunhuseyinteymur.newsly.data.repository
 
-import com.faridjeyhunhuseyinteymur.newsly.R
-import com.faridjeyhunhuseyinteymur.newsly.data.model.Article
-import com.faridjeyhunhuseyinteymur.newsly.data.model.Source
+import com.faridjeyhunhuseyinteymur.newsly.data.model.APIResponse
+import com.faridjeyhunhuseyinteymur.newsly.data.remote.ApiConfig
+import com.faridjeyhunhuseyinteymur.newsly.util.Resource
+import retrofit2.HttpException
+import java.io.IOException
 
-//This class Contains mock data for now.
 
 
 class NewsRepository {
-    private val mockArticles = listOf(
-        Article(
-            title = "TotalEnergies pauses business with Adani Group",
-            description = "French oil major TotalEnergies halted investments into Adani Group, after the Indian ports-to-power conglomerate was engulfed in a crisis over an alleged multi-million-dollar bribery scheme.",
-            category = "Business",
-            imageId = R.drawable.ic_b
-        ),
-        Article(
-            title = "Israel-Lebanon ceasefire deal approved",
-            description = "Israeli Prime Minister Benjamin Netanyahu approved the emerging ceasefire deal with Hezbollah 'in principle' during a security consultation with Israeli officials Sunday...",
-            category = "Politics",
-            imageId = R.drawable.ic_b
-        )
-    )
-
-    fun getNews(category: String? = null): List<Article> {
-        return if (category != null && category != "all") {
-            mockArticles.filter {
-                it.category.equals(category, ignoreCase = true)
+    suspend fun getNews(category: String? = null): Resource<APIResponse> {
+        return try {
+            val response = ApiConfig.api.getTopHeadlines(category = category)
+            if (response.isSuccessful && response.body() != null) {
+                Resource.Success(response.body()!!)
+            } else {
+                Resource.Error("An error occurred: ${response.message()}")
             }
-        } else {
-            mockArticles
+        } catch (e: HttpException) {
+            Resource.Error("Network error: ${e.localizedMessage ?: "Unknown error"}")
+        } catch (e: IOException) {
+            Resource.Error("Check your internet connection")
+        } catch (e: Exception) {
+            Resource.Error("An unexpected error occurred")
         }
-    }
-
-    fun getCategories(): List<String> {
-        return listOf("All", "Business", "Politics", "Technology", "Sports", "Entertainment")
     }
 }
