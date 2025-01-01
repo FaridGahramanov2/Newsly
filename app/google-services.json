@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "284604211987",
+    "project_id": "newsly1-13cfe",
+    "storage_bucket": "newsly1-13cfe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284604211987:android:cdc35482799ba13c22f0e6",
+        "android_client_info": {
+          "package_name": "com.bestnews.newsly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpfOAt0wr2iYRzF5Jm5GDsWMWpCuQVvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284604211987:android:dfa524c207b9bb9d22f0e6",
+        "android_client_info": {
+          "package_name": "com.faridjeyhunhuseyinteymur.newsly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpfOAt0wr2iYRzF5Jm5GDsWMWpCuQVvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
