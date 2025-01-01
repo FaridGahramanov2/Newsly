@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/newsListFragment">
 
+    <!-- News List Fragment -->
     <fragment
         android:id="@+id/newsListFragment"
         android:name="com.faridjeyhunhuseyinteymur.newsly.ui.news.list.NewsListFragment"
@@ -21,7 +21,7 @@
             app:destination="@id/articleDetailFragment" />
     </fragment>
 
-
+    <!-- Article Detail Fragment -->
     <fragment
         android:id="@+id/articleDetailFragment"
         android:name="com.faridjeyhunhuseyinteymur.newsly.ui.news.detail.ArticleDetailFragment"
@@ -32,6 +32,7 @@
             app:argType="com.faridjeyhunhuseyinteymur.newsly.data.model.Article" />
     </fragment>
 
+    <!-- Categories Fragment -->
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.faridjeyhunhuseyinteymur.newsly.ui.categories.CategoriesFragment"
@@ -42,6 +43,7 @@
             app:destination="@id/newsListFragment" />
     </fragment>
 
+    <!-- Broadcasting Fragment -->
     <fragment
         android:id="@+id/broadcastingFragment"
         android:name="com.faridjeyhunhuseyinteymur.newsly.ui.broadcast.BroadcastingFragment"
@@ -55,5 +57,20 @@
             app:popUpToInclusive="true" />
     </fragment>
 
+    <!-- User Fragment -->
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.faridjeyhunhuseyinteymur.newsly.ui.user.UserFragment"
+        android:label="User"
+        tools:layout="@layout/fragment_user">
+        <!-- Action to navigate to News List -->
+        <action
+            android:id="@+id/action_userFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+        <!-- Action to navigate to Article Detail -->
+        <action
+            android:id="@+id/action_userFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
 
 </navigation>

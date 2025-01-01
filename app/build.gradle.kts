@@ -69,6 +69,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.firebase.firestore.ktx)
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
     implementation("io.coil-kt:coil:2.5.0")

@@ -14,4 +14,9 @@
         android:id="@+id/broadcastingFragment"
         android:icon="@drawable/ic_broadcast"
         android:title="Broadcast" />
+
+    <item
+        android:id="@+id/userFragment"
+        android:icon="@drawable/ic_user"
+    android:title="Saved Articles" />
 </menu>

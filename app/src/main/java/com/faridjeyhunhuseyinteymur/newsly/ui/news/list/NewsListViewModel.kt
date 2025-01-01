@@ -19,11 +19,14 @@ class NewsListViewModel : ViewModel() {
         try {
             val response = repository.getNews(category)
             if (response is Resource.Success) {
-                // Filter out removed articles
+                // Safely filter out invalid or removed articles
                 val filteredArticles = response.data?.articles?.filter { article ->
-                    !article.title.contains("[Removed]", ignoreCase = true) &&
-                            !article.description.isNullOrEmpty() &&
-                            !article.description.contains("[Removed]", ignoreCase = true)
+                    val title = article.title ?: "" // Fallback to empty string if null
+                    val description = article.description ?: "" // Fallback to empty string if null
+
+                    !title.contains("[Removed]", ignoreCase = true) &&
+                            description.isNotEmpty() &&
+                            !description.contains("[Removed]", ignoreCase = true)
                 }
 
                 // Create new APIResponse with filtered articles
@@ -35,10 +38,10 @@ class NewsListViewModel : ViewModel() {
                     )
                 )
             } else {
-                _news.value = response
+                _news.value = Resource.Error(response.message ?: "Unknown error")
             }
         } catch (e: Exception) {
-            _news.value = Resource.Error(e.message ?: "An error occurred")
+            _news.value = Resource.Error(e.message ?: "An unexpected error occurred")
         }
     }
 }

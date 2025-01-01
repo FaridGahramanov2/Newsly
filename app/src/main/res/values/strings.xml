@@ -2,4 +2,8 @@
     <string name="app_name">Newsly</string>
     <string name="news_image">News image</string>
     <string name="category_chip_description">News category</string>
+    <string name="save_article">Save this article</string>
+    <string name="news_image_desc">News cover image</string>
+    <string name="news_title">Sample News Title</string>
+    <string name="news_description">This is a brief description of the news article.</string>
 </resources>

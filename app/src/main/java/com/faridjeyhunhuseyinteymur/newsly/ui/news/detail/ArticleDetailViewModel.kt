@@ -12,4 +12,6 @@ class ArticleDetailViewModel : ViewModel() {
     fun setArticle(article: Article) {
         _article.value = article
     }
+
 }
+

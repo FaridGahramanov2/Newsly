@@ -1,54 +1,73 @@
 package com.faridjeyhunhuseyinteymur.newsly.ui.news.list
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.faridjeyhunhuseyinteymur.newsly.R
 import com.faridjeyhunhuseyinteymur.newsly.data.model.Article
 import com.faridjeyhunhuseyinteymur.newsly.databinding.ItemNewsBinding
 
-class NewsAdapter : ListAdapter<Article, NewsAdapter.NewsViewHolder>(NewsDiffCallback()) {
-    var onItemClick: ((Article) -> Unit)? = null
+class NewsAdapter(
+    var onItemClick: ((Article) -> Unit)? = null,
+    var onItemSaveClick: ((Article, Boolean) -> Unit)? = null // Pass save status
+) : ListAdapter<Article, NewsAdapter.NewsViewHolder>(NewsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        return NewsViewHolder(
-            ItemNewsBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        val binding = ItemNewsBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
+        return NewsViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val article = getItem(position)
+        holder.bind(article)
+
+        // Handle item click
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(article)
+        }
+
+        // Handle save button click
+        holder.binding.saveButton.setOnClickListener {
+            val newSaveState = !article.isSaved
+            onItemSaveClick?.invoke(article, newSaveState) // Notify fragment/activity
+            article.isSaved = newSaveState // Toggle save state
+            holder.updateSaveButtonIcon(article.isSaved)
+        }
     }
 
-    inner class NewsViewHolder(private val binding: ItemNewsBinding) :
+    inner class NewsViewHolder(val binding: ItemNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        init {
-            itemView.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onItemClick?.invoke(getItem(position))
-                }
-            }
-        }
 
         fun bind(article: Article) {
             binding.apply {
                 titleTextView.text = article.title
                 descriptionTextView.text = article.description
 
-                article.urlToImage?.let { url ->
-                    Glide.with(itemView)
-                        .load(url)
-                        .into(newsImageView)
-                }
+                // Load image
+                Glide.with(itemView.context)
+                    .load(article.urlToImage)
+                    .placeholder(R.drawable.ic_bookmark_outlined)
+                    .into(newsImageView)
+
+                // Update save button icon based on save state
+                updateSaveButtonIcon(article.isSaved)
             }
+        }
+
+        fun updateSaveButtonIcon(isSaved: Boolean) {
+            val iconResId = if (isSaved) {
+                R.drawable.ic_bookmark_filled // Black filled icon
+            } else {
+                R.drawable.ic_bookmark_outlined // Outline icon
+            }
+            binding.saveButton.setImageResource(iconResId)
         }
     }
 
