@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -41,11 +42,17 @@ android {
 }
 
 dependencies {
-    implementation ("com.google.android.material:material:1.11.0")
-    implementation ("androidx.browser:browser:1.7.0")
+    implementation("com.google.android.material:material:1.11.0")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0")) // Firebase BOM
+
+    implementation("com.google.firebase:firebase-analytics") // Firebase Analytics
+    implementation("com.google.firebase:firebase-auth-ktx") // Firebase Authentication
+    implementation("com.google.firebase:firebase-database-ktx") // Firebase Realtime Database
+
+    implementation("androidx.browser:browser:1.7.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -63,9 +70,8 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
-    
-    implementation("io.coil-kt:coil:2.5.0")
 
+    implementation("io.coil-kt:coil:2.5.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
