@@ -9,7 +9,6 @@
         android:id="@+id/userTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SAVED NEWS"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
