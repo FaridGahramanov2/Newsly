@@ -28,7 +28,26 @@
         android:autofillHints="password"
         android:importantForAccessibility="yes"
         android:padding="12dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="8dp" />
+
+    <!-- Forgot Password Text with increased touch target -->
+    <TextView
+        android:id="@+id/forgotPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="Forgot Password?"
+        android:textColor="@color/teal_700"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:minWidth="48dp"
+        android:textSize="14sp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:importantForAccessibility="yes"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp" />
 
     <!-- Login Button -->
     <Button

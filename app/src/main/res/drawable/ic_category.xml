@@ -4,13 +4,55 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+
+    <!-- Background shapes -->
     <path
-        android:fillColor="#FF000000"
-        android:pathData="M12,2l-5.5,9h11z"/>
+        android:fillColor="#4CAF50"
+        android:pathData="M3,3 L11,3 C12.1,3 13,3.9 13,5 L13,9 C13,10.1 12.1,11 11,11 L3,11 C1.9,11 1,10.1 1,9 L1,5 C1,3.9 1.9,3 3,3 Z" />
+
     <path
-        android:fillColor="#FF000000"
-        android:pathData="M17.5,17.5m-4.5,0a4.5,4.5 0,1 1,9 0a4.5,4.5 0,1 1,-9 0"/>
+        android:fillColor="#2196F3"
+        android:pathData="M13,3 L21,3 C22.1,3 23,3.9 23,5 L23,9 C23,10.1 22.1,11 21,11 L13,11 C11.9,11 11,10.1 11,9 L11,5 C11,3.9 11.9,3 13,3 Z" />
+
+    <!-- Decorative overlays for top squares -->
     <path
-        android:fillColor="#FF000000"
-        android:pathData="M3,13.5h8v8H3z"/>
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.3"
+        android:pathData="M3,3 L11,3 L7,7 L3,3 Z" />
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.2"
+        android:pathData="M13,3 L21,3 L17,7 L13,3 Z" />
+
+    <!-- Bottom squares with unique shapes -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M3,13 C3,13 4,13 5,13 C8,13 9,17 11,17 C13,17 13,13 13,13 L13,19 C13,20.1 12.1,21 11,21 L5,21 C3.9,21 3,20.1 3,19 L3,13 Z" />
+
+    <path
+        android:fillColor="#9C27B0"
+        android:pathData="M13,13 C13,13 14,13 15,13 C18,13 19,17 21,17 C23,17 23,13 23,13 L23,19 C23,20.1 22.1,21 21,21 L15,21 C13.9,21 13,20.1 13,19 L13,13 Z" />
+
+    <!-- Inner decorative elements -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.4"
+        android:pathData="M5,15 C6.66,15 8,16.34 8,18 C8,19.66 6.66,21 5,21 C3.34,21 2,19.66 2,18 C2,16.34 3.34,15 5,15 Z" />
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.3"
+        android:pathData="M15,15 C16.66,15 18,16.34 18,18 C18,19.66 16.66,21 15,21 C13.34,21 12,19.66 12,18 C12,16.34 13.34,15 15,15 Z" />
+
+    <!-- Additional decorative elements -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.2"
+        android:pathData="M7,5 L9,5 L9,7 L7,7 Z" />
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.2"
+        android:pathData="M17,5 L19,5 L19,7 L17,7 Z" />
 </vector>
