@@ -32,7 +32,15 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun setupCategories() {
-        val categories = listOf("Business", "Politics", "Technology", "Sports", "Entertainment")
+        val categories = listOf(
+            "Business",
+            "Entertainment",
+            "Health",
+            "Science",
+            "Sports",
+            "Technology",
+            "General"
+        )
         binding.categoryChipGroup.removeAllViews()
 
         categories.forEach { category ->
@@ -53,11 +61,12 @@ class CategoriesFragment : Fragment() {
                 }
 
                 setOnClickListener {
+                    val apiCategory = category.lowercase()
                     viewModel.setSelectedCategory(category)
                     updateChipSelection(category)
                     findNavController().navigate(
                         R.id.newsListFragment,
-                        bundleOf("category" to category)
+                        bundleOf("category" to apiCategory)
                     )
                 }
             }
@@ -75,7 +84,7 @@ class CategoriesFragment : Fragment() {
             val isSelected = chip.text == selectedCategory
             chip.isChecked = isSelected
             chip.setChipBackgroundColorResource(
-                if (isSelected) R.color.chip_checked_background
+                if (isSelected) R.color.chip_checked_background  // Removed *
                 else R.color.chip_unchecked_background
             )
         }
