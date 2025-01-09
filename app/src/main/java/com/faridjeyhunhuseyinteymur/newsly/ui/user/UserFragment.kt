@@ -95,7 +95,6 @@ class UserFragment : Fragment() {
                 .document(sanitizedUrl)
 
             if (isSaved) {
-                // Save article
                 docRef.set(article)
                     .addOnSuccessListener {
                         Toast.makeText(context, "Article saved!", Toast.LENGTH_SHORT).show()
@@ -104,7 +103,6 @@ class UserFragment : Fragment() {
                         Toast.makeText(context, "Error saving article: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
             } else {
-                // Remove article
                 docRef.delete()
                     .addOnSuccessListener {
                         Toast.makeText(context, "Article removed!", Toast.LENGTH_SHORT).show()

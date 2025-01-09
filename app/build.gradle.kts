@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
@@ -38,6 +39,8 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        
+        dataBinding = true
     }
 }
 

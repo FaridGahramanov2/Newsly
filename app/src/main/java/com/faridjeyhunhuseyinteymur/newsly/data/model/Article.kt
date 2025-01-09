@@ -14,9 +14,8 @@ data class Article(
     val title: String? = null,
     val url: String? = null,
     val urlToImage: String? = null,
-    var isSaved: Boolean = false // Default value for Firebase
+    var isSaved: Boolean = false
 ) : Parcelable {
-    // No-argument constructor for Firestore
     constructor() : this(
         author = null,
         content = null,
@@ -29,4 +28,6 @@ data class Article(
         urlToImage = null,
         isSaved = false
     )
+
+
 }

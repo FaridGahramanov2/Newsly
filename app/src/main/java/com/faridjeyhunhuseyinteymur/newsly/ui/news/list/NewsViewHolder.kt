@@ -10,13 +10,13 @@ class NewsViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(article: Article) {
         binding.apply {
-            titleTextView.text = article.title
-            descriptionTextView.text = article.description
+            this.article = article
             article.urlToImage?.let {
                 Glide.with(itemView.context)
                     .load(it)
                     .into(newsImageView)
             }
+            executePendingBindings()
         }
     }
 }

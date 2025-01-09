@@ -19,17 +19,15 @@ class NewsListViewModel : ViewModel() {
         try {
             val response = repository.getNews(category)
             if (response is Resource.Success) {
-                // Safely filter out invalid or removed articles
                 val filteredArticles = response.data?.articles?.filter { article ->
-                    val title = article.title ?: "" // Fallback to empty string if null
-                    val description = article.description ?: "" // Fallback to empty string if null
+                    val title = article.title ?: ""
+                    val description = article.description ?: ""
 
                     !title.contains("[Removed]", ignoreCase = true) &&
                             description.isNotEmpty() &&
                             !description.contains("[Removed]", ignoreCase = true)
                 }
 
-                // Create new APIResponse with filtered articles
                 _news.value = Resource.Success(
                     APIResponse(
                         articles = filteredArticles ?: emptyList(),

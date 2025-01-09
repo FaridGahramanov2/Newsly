@@ -16,6 +16,7 @@ import com.faridjeyhunhuseyinteymur.newsly.util.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+
 class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     private var _binding: FragmentNewsListBinding? = null
     private val binding get() = _binding!!
@@ -26,7 +27,7 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var firebaseAuth: FirebaseAuth
 
-    private val savedArticles = mutableSetOf<String>() // Store URLs of saved articles
+    private val savedArticles = mutableSetOf<String>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,11 +36,10 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        // Use Safe Args to get category
         val category = args.category ?: "general"
         viewModel.getNews(category)
 
-        fetchSavedArticles() // Load saved articles from Firebase
+        fetchSavedArticles()
         setupRecyclerView()
         setupClickListener()
         setupSaveClickListener()
@@ -104,25 +104,48 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
                 docRef.set(data)
                     .addOnSuccessListener {
                         savedArticles.add(article.url ?: "")
-                        newsAdapter.notifyDataSetChanged()
+                        val currentList = newsAdapter.currentList.toMutableList()
+                        val index = currentList.indexOfFirst { it.url == article.url }
+                        if (index != -1) {
+                            currentList[index] = article
+                            newsAdapter.submitList(currentList)
+                        }
                         Toast.makeText(context, "Article saved!", Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener { e ->
+                        article.isSaved = !isSaved
+
+                        newsAdapter.notifyItemChanged(
+                            newsAdapter.currentList.indexOfFirst { it.url == article.url }
+                        )
                         Toast.makeText(context, "Error saving article: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
             } else {
                 docRef.delete()
                     .addOnSuccessListener {
                         savedArticles.remove(article.url)
-                        newsAdapter.notifyDataSetChanged()
+
+                        val currentList = newsAdapter.currentList.toMutableList()
+                        val index = currentList.indexOfFirst { it.url == article.url }
+                        if (index != -1) {
+                            currentList[index] = article
+                            newsAdapter.submitList(currentList)
+                        }
                         Toast.makeText(context, "Article removed!", Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener { e ->
+
+                        article.isSaved = !isSaved
+
+                        newsAdapter.notifyItemChanged(
+                            newsAdapter.currentList.indexOfFirst { it.url == article.url }
+                        )
                         Toast.makeText(context, "Error removing article: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
             }
         }
     }
+
 
     private fun setupRecyclerView() {
         newsAdapter = NewsAdapter(
@@ -204,4 +227,6 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
